@@ -1,3 +1,4 @@
+--create database using postico named koalla-holla
 --creates koallas table
 CREATE TABLE "koallas" (
     "id" SERIAL PRIMARY KEY,
