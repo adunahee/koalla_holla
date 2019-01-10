@@ -11,11 +11,12 @@ $( document ).ready( function(){
 function setupClickListeners() {
 $( '#addButton' ).on( 'click', addKoala); 
   $('#viewKoalas').on('click', '.transfer-button', koalaReady);
-  
+  $('#viewKoalas').on('click','.delete-button', deleteKoala);
 }
 //delete Koala 
 function deleteKoala(){
-  const koalaId = $(this).data('koalasid');
+  console.log('delete Click');
+  const koalaId = $(this).data('koalaid');
   $.ajax({
       method: 'DELETE',
       url: `/koalas/${koalaId}`
@@ -94,5 +95,3 @@ function koalaReady(){
       console.log(error);
     })
 }
-
-
