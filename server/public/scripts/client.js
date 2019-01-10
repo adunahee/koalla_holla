@@ -10,7 +10,7 @@ $( document ).ready( function(){
 }); // end doc ready
 
 function setupClickListeners() {
-  // $( '#addButton' ).on( 'click', saveKoala); 
+$( '#addButton' ).on( 'click', addKoala); 
 
 }
 
@@ -20,7 +20,7 @@ function getKoalas(){
   // ajax call to server to get koalas
   $.ajax ({
     method: 'GET',
-    url: 'koalas'
+    url: '/koalas'
   }).then(function(response) {
     const listOfKoalas = response;
     $('#viewKoalas').empty();
@@ -31,11 +31,11 @@ function getKoalas(){
                                 <td>${koala.gender}</td>
                                 <td>${koala.age}</td>
                                 <td>${koala.ready_to_transfer}</td>
-                                <td>${koala.notes}</td>
-                                <button class="delete-button"
-                                data-koalaId="${koala.id}">Delete</button>
                                 <button class="transfer-button"
                                 data-transfer="${koala.id}">Ready for Transfer</button>
+                                <td>${koala.notes}</td>
+                                <button class="delete-button"
+                                data-koalaId="${koala.id}">Remove</button> 
                                 </tr>`
                           )};
        
