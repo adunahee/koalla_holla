@@ -11,6 +11,7 @@ $( document ).ready( function(){
 
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', saveKoala); 
+  
 }
 
 function getKoalas(){
