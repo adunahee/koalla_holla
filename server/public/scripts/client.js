@@ -20,11 +20,6 @@ function getKoalas(){
   
 } // end getKoalas
 
-function saveKoala(){
-  // ajax call to server to get koalas
- 
-}
-
 function placeholderValues () {
   $('#nameIn').val('Fred');
   $('#ageIn').val(4);
