@@ -1,11 +1,13 @@
-console.log( 'js' );
+//console.log( 'js' );
 
 $( document ).ready( function(){
-  console.log( 'JQ' );
+  //console.log( 'JQ' );
   // Establish Click Listeners
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+  //test code to fill out inputs
+  placeholderValues();
 }); // end doc ready
 
 function setupClickListeners() {
@@ -29,7 +31,7 @@ function deleteKoala(){
 
 //get koalas functions as expected
 function getKoalas(){
-  console.log( 'in getKoalas' );
+  //console.log( 'in getKoalas' );
   // ajax call to server to get koalas
   $.ajax ({
     method: 'GET',
@@ -39,7 +41,7 @@ function getKoalas(){
     $('#viewKoalas').empty();
     for(let koala of listOfKoalas) {
       //append each koala to the table
-      console.log(`${koala.ready_to_transfer}`);
+      //console.log(`${koala.ready_to_transfer}`);
       if (`${koala.ready_to_transfer}` === 'false') {
       
         
@@ -91,7 +93,7 @@ function addKoala() {
       notes: $('#notesIn').val()
     }
   }).then((res)=>{
-    console.log(res);
+    //console.log(res);
     getKoalas();
   }).catch((error) => {
     console.log('server error for ajax POST', error);
