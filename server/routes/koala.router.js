@@ -43,7 +43,29 @@ koalaRouter.post('/', (req, res) => {
     })
 })
 
+// PUT
+//Tianas.... working
+koalaRouter.put('/transfer/:id', (req,res) => {
+    console.log('in PUT', req.params.id );
+    const queryText = `UPDATE "koalas" SET "ready_to_transfer" = true WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.id]).then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('error into PUT "koalas" in "ready_to_transfer"', error);
+        res.sendStatus(500);
+    });
+})
 
-// DELETE Nick 
+// DELETE
+koalaRouter.delete('/:id', (req, res) => {
+    console.log('Params',req.params); 
+    const queryText = `DELETE * FROM "koalas" WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.id]).then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error in DELETE /koala', error);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = koalaRouter;

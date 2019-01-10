@@ -10,7 +10,8 @@ $( document ).ready( function(){
 }); // end doc ready
 
 function setupClickListeners() {
-  $( '#addButton' ).on( 'click', saveKoala, addKoala); 
+  $( '#addButton' ).on( 'click', saveKoala); 
+  
 }
 
 function getKoalas(){
