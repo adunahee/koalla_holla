@@ -15,7 +15,7 @@ const koalaRouter = express.Router();
 
 // DELETE
 //
-router.delete('/:id', (req, res) => {
+router.delete('/', (req, res) => {
     console.log('Params',req.params); 
     const queryText = `DELETE FROM "koala" WHERE "id" = $1`;
     pool.query(queryText, [req.params.id]).then((result) => {
