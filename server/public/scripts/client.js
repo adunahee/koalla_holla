@@ -72,6 +72,7 @@ function addKoala() {
 
 function koalaReady(){
   const transferReady = $(this).data('transfer');
+  $('')
     $.ajax({
       method: 'PUT',
       url: `/transfer/${koala.id}`
@@ -82,3 +83,5 @@ function koalaReady(){
       console.log(error);
     })
 }
+
+
