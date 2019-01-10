@@ -10,8 +10,9 @@ $( document ).ready( function(){
 }); // end doc ready
 
 function setupClickListeners() {
-  $( '#addButton' ).on( 'click', addKoala); 
-
+  $( '#addButton' ).on( 'click', addKoala);
+  $('#viewKoalas').on('click', '.transfer-button', koalaReady);
+  
 }
 
 //get koalas functions as expected
@@ -67,4 +68,17 @@ function addKoala() {
   }).catch((error) => {
     console.log('server error for ajax POST', error);
   })
+}
+
+function koalaReady(){
+  const transferReady = $(this).data('transfer');
+    $.ajax({
+      method: 'PUT',
+      url: `/transfer/${koala.id}`
+    }).then(function(response){
+      getKoalas()
+    }).catch(function(error){
+      alert('Transfer Update Failed.', error);
+      console.log(error);
+    })
 }
