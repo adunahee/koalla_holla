@@ -1,3 +1,21 @@
-.transfer-button {
+/* .transfer-button {
     background-color: green;
+} */
+
+.ready {
+    background-color: lightgreen;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+header > img {
+    height: 100px;
+    width: 100px;
+}
+
+h1 {
+    display: inline;
 }

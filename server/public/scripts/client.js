@@ -51,19 +51,19 @@ function getKoalas(){
                                 <td>${koala.age}</td>
                                 <td>${koala.ready_to_transfer}</td>
                                 <td><button class="transfer-button"
-                                data-transfer="${koala.id}">Ready for Transfer</button><td>
+                                data-transfer="${koala.id}">Ready for Transfer</button></td>
                                 <td>${koala.notes}</td>
                                 <td><button class="delete-button"
                                 data-koalaId="${koala.id}">Remove</button></td>
                                 </tr>`
         )
       } else {
-        $('#viewKoalas').append(`<tr>
+        $('#viewKoalas').append(`<tr class='ready'>
                                 <td>${koala.name}</td>
                                 <td>${koala.gender}</td>
                                 <td>${koala.age}</td>
                                 <td>${koala.ready_to_transfer}</td>
-                                <td><td>
+                                <td></td>
                                 <td>${koala.notes}</td>
                                 <td><button class="delete-button"
                                 data-koalaId="${koala.id}">Remove</button></td>
