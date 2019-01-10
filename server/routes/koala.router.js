@@ -14,13 +14,23 @@ const pool = new Pool({
     idleTimeoutMillis: 10000 //10 secs to not waste time
 });
 
-// GET
-
+// GET Erin **working as of 2:04 pm**
+koalaRouter.get('/', (req, res) => {
+    let queryText = `SELECT * FROM "koalas";`;
+    pool.query(queryText).then((result)=>{
+        console.log(result);
+        res.send(result.rows); //result.rows will be an Aray
+    }).catch((error)=> {
+        console.log(`Error in getKoalas ${error}`);
+        res.sendStatus(500);
+    });
+    console.log(`in GetKoalas`);
+}); 
 
 // POST
 koalaRouter.post('/', (req, res) => {
     const newKoala = req.body;
-    console.log(newKoala);
+    console.log('in post', newKoala);
     
     let queryText = `INSERT INTO "koalas" ("name", "gender", "age", "ready_to_transfer", "notes")
                      VALUES ($1, $2, $3, $4, $5);`;
@@ -33,9 +43,7 @@ koalaRouter.post('/', (req, res) => {
     })
 })
 
-// PUT
 
-
-// DELETE
+// DELETE Nick 
 
 module.exports = koalaRouter;
