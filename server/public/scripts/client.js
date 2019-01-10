@@ -39,6 +39,10 @@ function getKoalas(){
     $('#viewKoalas').empty();
     for(let koala of listOfKoalas) {
       //append each koala to the table
+      console.log(`${koala.ready_to_transfer}`);
+      if (`${koala.ready_to_transfer}` === 'false') {
+      
+        
       $('#viewKoalas').append(`<tr>
                                 <td>${koala.name}</td>
                                 <td>${koala.gender}</td>
@@ -50,8 +54,20 @@ function getKoalas(){
                                 <td><button class="delete-button"
                                 data-koalaId="${koala.id}">Remove</button></td>
                                 </tr>`
-                          )};
-       
+        )
+      } else {
+        $('#viewKoalas').append(`<tr>
+                                <td>${koala.name}</td>
+                                <td>${koala.gender}</td>
+                                <td>${koala.age}</td>
+                                <td>${koala.ready_to_transfer}</td>
+                                <td><td>
+                                <td>${koala.notes}</td>
+                                <td><button class="delete-button"
+                                data-koalaId="${koala.id}">Remove</button></td>
+                                </tr>`)
+      }
+    } 
   });
 } // end getKoalas
 
@@ -84,10 +100,9 @@ function addKoala() {
 
 function koalaReady(){
   const transferReady = $(this).data('transfer');
-  $('')
     $.ajax({
       method: 'PUT',
-      url: `/transfer/${koala.id}`
+      url: `/koalas/transfer/${transferReady}`
     }).then(function(response){
       getKoalas()
     }).catch(function(error){
