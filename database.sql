@@ -1,5 +1,6 @@
---creates koallas table
-CREATE TABLE "koallas" (
+--create database using postico named koalla-holla
+--creates koalas table
+CREATE TABLE "koalas" (
     "id" SERIAL PRIMARY KEY,
     "name" varchar(40) not null,
     "gender" varchar(1) not null,
@@ -9,7 +10,7 @@ CREATE TABLE "koallas" (
 );
 
 --adds sample koallas, true in ready_to_transfer means yes they are
-INSERT INTO "koallas" ("name", "gender", "age", "ready_to_transfer", "notes") 
+INSERT INTO "koalas" ("name", "gender", "age", "ready_to_transfer", "notes") 
     VALUES ('Scotty', 'M', 4, true, 'Born in Guatemala'),
            ('Jean', 'F', 5, true, 'Allergic to lots of lava'),
            ('Ororo', 'F', 7, false, 'Loves listening to Paula Abdul'),
