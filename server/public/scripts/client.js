@@ -31,11 +31,11 @@ function getKoalas(){
                                 <td>${koala.gender}</td>
                                 <td>${koala.age}</td>
                                 <td>${koala.ready_to_transfer}</td>
-                                <button class="transfer-button"
-                                data-transfer="${koala.id}">Ready for Transfer</button>
+                                <td><button class="transfer-button"
+                                data-transfer="${koala.id}">Ready for Transfer</button><td>
                                 <td>${koala.notes}</td>
-                                <button class="delete-button"
-                                data-koalaId="${koala.id}">Remove</button> 
+                                <td><button class="delete-button"
+                                data-koalaId="${koala.id}">Remove</button></td>
                                 </tr>`
                           )};
        
