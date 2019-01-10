@@ -44,6 +44,7 @@ koalaRouter.post('/', (req, res) => {
 })
 
 // PUT
+//Tianas.... working
 koalaRouter.put('/transfer/:id', (req,res) => {
     console.log('in PUT', req.params.id );
     const queryText = `UPDATE "koalas" SET "ready_to_transfer" = true WHERE "id" = $1;`;
