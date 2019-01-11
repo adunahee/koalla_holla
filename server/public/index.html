@@ -35,6 +35,14 @@
     </section>
     <section>
       <h2>All Koalas</h2>
+      <label>You may sort the table by these options</label>
+      <select id="sortInput" name="column">
+        <option value="name">Name</option>
+        <option value="age">Age</option>
+        <option value="gender">Gender</option>
+        <option value="ready_to_transfer">Status</option>
+      </select>
+      <button id="sortTableButton">Sort</button>
       <table>
         <thead>
           <tr>
