@@ -17,17 +17,25 @@ const pool = new Pool({
 // GET Erin **working as of 2:04 pm**
 koalaRouter.get('/:colName', (req, res) => {
     //console.log('in /koalas GET and colName is', req.params.colName);
-    //could not scrub b/c scrubbing prevent order by-ing
-    let queryText = `SELECT * FROM "koalas" ORDER BY ${req.params.colName};`;
-    
-    pool.query(queryText).then((result)=>{
-        //console.log(result);
-        
-        res.send(result.rows); //result.rows will be an Aray
-    }).catch((error)=> {
-        console.log(`Error in getKoalas ${error}`);
+    let colName = req.params.colName;
+    if( colName == "name" || colName == "age" || colName == "gender" || colName == "ready_to_transfer"){
+        //scrubbing col name doesnt allow sorting
+        let queryText = `SELECT * FROM "koalas" ORDER BY ${req.params.colName};`;
+
+        pool.query(queryText, [req.params.colName]).then((result) => {
+            //console.log(result);
+
+            res.send(result.rows); //result.rows will be an Aray
+        }).catch((error) => {
+            console.log(`Error in getKoalas ${error}`);
+            res.sendStatus(500);
+        });
+    } else {
+        console.log(`In GET, colName is not valid`, colName);
         res.sendStatus(500);
-    });
+    }
+    
+    
     //console.log(`in GetKoalas`);
 }); 
 
