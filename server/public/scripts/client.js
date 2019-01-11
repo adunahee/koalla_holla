@@ -67,33 +67,26 @@ function getKoalas(){
     for(let koala of listOfKoalas) {
       //append each koala to the table
       //console.log(`${koala.ready_to_transfer}`);
-      if (`${koala.ready_to_transfer}` === 'false') {
-      
-        
       $('#viewKoalas').append(`<tr>
                                 <td class="name">${koala.name}</td>
                                 <td>${koala.gender}</td>
                                 <td>${koala.age}</td>
-                                <td>${koala.ready_to_transfer}</td>
+                                <td class="status">${koala.ready_to_transfer}</td>
                                 <td><button class="transfer-button"
-                                data-transfer="${koala.id}">Ready for Transfer</button></td>
+                                data-transfer="${koala.id}">Change Status</button></td>
                                 <td>${koala.notes}</td>
                                 <td><button class="delete-button"
                                 data-koalaId="${koala.id}">Remove</button></td>
                                 </tr>`
         )
-      } else {
-        $('#viewKoalas').append(`<tr class='ready'>
-                                <td>${koala.name}</td>
-                                <td>${koala.gender}</td>
-                                <td>${koala.age}</td>
-                                <td>${koala.ready_to_transfer}</td>
-                                <td></td>
-                                <td>${koala.notes}</td>
-                                <td><button class="delete-button"
-                                data-koalaId="${koala.id}">Remove</button></td>
-                                </tr>`)
-      }
+      let lastRowStatus = $('#viewKoalas').children().last().children('.status').html();
+      let lastTableRow = $('#viewKoalas').children().last();
+      //console.log(lastRowStatus);
+      //console.log(lastTableRow);
+      if( lastRowStatus == 'true') {
+        //console.log('conditional passes');
+          lastTableRow.addClass('ready');
+        }
     } 
   });
 } // end getKoalas
@@ -114,7 +107,7 @@ function addKoala() {
       name: $('#nameIn').val(),
       gender: $('#genderIn').val(),
       age: $('#ageIn').val(),
-      ready_to_transfer: $('#readyForTransferIn').val(),
+      ready_to_transfer: $('#readyForTransferIn').is(':checked'),
       notes: $('#notesIn').val()
     }
   }).then((res)=>{
@@ -126,12 +119,13 @@ function addKoala() {
 }
 
 function koalaReady(){
-  const transferReady = $(this).data('transfer');
+  
+  const koalaId = $(this).data('transfer');
     $.ajax({
       method: 'PUT',
-      url: `/koalas/transfer/${transferReady}`
+      url: `/koalas/transfer/${koalaId}/`
     }).then(function(response){
-      getKoalas()
+      getKoalas();
     }).catch(function(error){
       alert('Transfer Update Failed.', error);
       console.log(error);
