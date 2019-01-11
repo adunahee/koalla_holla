@@ -8,6 +8,8 @@ $( document ).ready( function(){
   getKoalas();
   //test code to fill out inputs
   placeholderValues();
+  //test code for sweet alert sourced
+  //swal('DOM has loaded, sweet alert is sourced!');
 }); // end doc ready
 
 function setupClickListeners() {
@@ -15,18 +17,41 @@ $( '#addButton' ).on( 'click', addKoala);
   $('#viewKoalas').on('click', '.transfer-button', koalaReady);
   $('#viewKoalas').on('click','.delete-button', deleteKoala);
 }
+
 //delete Koala 
 function deleteKoala(){
-  console.log('delete Click');
-  const koalaId = $(this).data('koalaid');
-  $.ajax({
-      method: 'DELETE',
-      url: `/koalas/${koalaId}`
-  }).then(function(response) {
-      getKoalas();
-  }).catch(function(error) {
-      console.log('Error in deleteKoala', error );
+  //grabs name of koala in row to be deleted
+  const koalaName = $(this).parent().parent().children(".name").html();
+  //console.log(koalaName);
+  
+  swal({
+    title: 'Confirm Delete',
+    text: `Are you sure you want to delete ${koalaName} from the table?`,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((confirmation) => {
+    switch (confirmation) {
+      case true:
+      swal('Delete confirmed.', `${koalaName} is gone now.`); 
+        const koalaId = $(this).data('koalaid');
+        $.ajax({
+          method: 'DELETE',
+          url: `/koalas/${koalaId}`
+        }).then(function (response) {
+          getKoalas();
+        }).catch(function (error) {
+          console.log('Error in deleteKoala', error);
+        });
+        break;
+      case null:
+      swal('Delete canceled.', `${koalaName} kept!`);
+        break;
+      default:
+        break;
+    }
   });
+  //console.log('delete Click');
 };
 
 //get koalas functions as expected
@@ -46,7 +71,7 @@ function getKoalas(){
       
         
       $('#viewKoalas').append(`<tr>
-                                <td>${koala.name}</td>
+                                <td class="name">${koala.name}</td>
                                 <td>${koala.gender}</td>
                                 <td>${koala.age}</td>
                                 <td>${koala.ready_to_transfer}</td>
