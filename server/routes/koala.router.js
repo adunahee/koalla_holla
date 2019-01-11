@@ -16,7 +16,7 @@ const pool = new Pool({
 
 // GET Erin **working as of 2:04 pm**
 koalaRouter.get('/', (req, res) => {
-    let queryText = `SELECT * FROM "koalas";`;
+    let queryText = `SELECT * FROM "koalas" ORDER BY "name";`;
     pool.query(queryText).then((result)=>{
         //console.log(result);
         res.send(result.rows); //result.rows will be an Aray
@@ -47,7 +47,8 @@ koalaRouter.post('/', (req, res) => {
 //Tianas.... working
 koalaRouter.put('/transfer/:id', (req,res) => {
     //console.log('in PUT', req.params.id );
-    const queryText = `UPDATE "koalas" SET "ready_to_transfer" = true WHERE "id" = $1;`;
+    
+    const queryText = `UPDATE "koalas" SET "ready_to_transfer" = NOT "ready_to_transfer" WHERE "id" = $1;`;
     pool.query(queryText, [req.params.id]).then((result) => {
         res.sendStatus(200);
     }).catch((error) => {
