@@ -15,10 +15,14 @@ const pool = new Pool({
 });
 
 // GET Erin **working as of 2:04 pm**
-koalaRouter.get('/', (req, res) => {
-    let queryText = `SELECT * FROM "koalas" ORDER BY "name";`;
+koalaRouter.get('/:colName', (req, res) => {
+    //console.log('in /koalas GET and colName is', req.params.colName);
+    //could not scrub b/c scrubbing prevent order by-ing
+    let queryText = `SELECT * FROM "koalas" ORDER BY ${req.params.colName};`;
+    
     pool.query(queryText).then((result)=>{
         //console.log(result);
+        
         res.send(result.rows); //result.rows will be an Aray
     }).catch((error)=> {
         console.log(`Error in getKoalas ${error}`);

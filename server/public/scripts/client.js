@@ -14,8 +14,9 @@ $( document ).ready( function(){
 
 function setupClickListeners() {
 $( '#addButton' ).on( 'click', addKoala); 
-  $('#viewKoalas').on('click', '.transfer-button', koalaReady);
-  $('#viewKoalas').on('click','.delete-button', deleteKoala);
+$('#viewKoalas').on('click', '.transfer-button', koalaReady);
+$('#viewKoalas').on('click','.delete-button', deleteKoala);
+$('#sortTableButton').on('click', getKoalas)
 }
 
 //delete Koala 
@@ -58,11 +59,16 @@ function deleteKoala(){
 function getKoalas(){
   //console.log( 'in getKoalas' );
   // ajax call to server to get koalas
+  let sortByCol = $('#sortInput').val();
+  //console.log('sortByCol is', sortByCol);
+  
   $.ajax ({
     method: 'GET',
-    url: '/koalas'
+    url: `/koalas/${sortByCol}/`
   }).then(function(response) {
     const listOfKoalas = response;
+    //console.log(listOfKoalas);
+    
     $('#viewKoalas').empty();
     for(let koala of listOfKoalas) {
       //append each koala to the table
