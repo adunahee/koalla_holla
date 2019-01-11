@@ -17,11 +17,20 @@
     </header>
     <section id="addKoala">
       <h2>Add Koala</h2>
+      <label>Koala name:</label>
       <input type="text" id="nameIn" value="" placeholder="Name">
+      <label>Age in years:</label>
       <input type="text" id="ageIn" value="" placeholder="Age">
+      <label> Gender as "M" or "F":</label>
       <input type="text" id="genderIn" value="" placeholder="Gender">
-      <input type="text" id="readyForTransferIn" value="" placeholder="Transfer">
-      <input type="text" id="notesIn" value="" placeholder="Notes">
+    </br>
+      <label>Is Koala ready for transfer?</label>
+      <input type="checkbox" id="readyForTransferIn" name= "status" value=true placeholder="Transfer">
+      <label for="readyForTransferIn">Yes</label>
+  </br>
+  <label>Other notes?</label>
+      <input type="text" id="notesIn" value="" placeholder="Notes" size="60">
+</br>
       <button type="button" id="addButton">Add Koala</button>
     </section>
     <section>
